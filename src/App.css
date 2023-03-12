@@ -1,7 +1,9 @@
-body {
-  background: teal;
+
+* {
+    background: rgb(228, 210, 210);
 }
 
+  
 .App {
   text-align: center;
   background: teal;

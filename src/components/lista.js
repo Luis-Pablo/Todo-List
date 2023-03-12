@@ -37,11 +37,11 @@ function TodoApp() {
                     
                 </form >
 
-                <span className="form-text my-2" id="span">Tareas pendientes {tarea.length}</span>   
+                <span className="form-text my-2" id="span">Tareas pendientes : {tarea.length}</span>   
 
 
 
-            <div>
+            <div className="mt-3">
                 <ul>
                     {tarea.map((item, index)=> 
                         <div className="row input-group mb-3">
