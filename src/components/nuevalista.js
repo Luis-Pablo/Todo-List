@@ -3,57 +3,69 @@ import { useState } from "react";
 function TodoApp() {
     const [input, setInput] = useState("");
     const [tarea, setTarea] = useState([]);
-
-   
-/*
-    const handleKeyDown = (e) => {
-        if (e.key === 'Enter') {
-            setTarea(tarea.concat(input));
-            
-        }
-    }
-
+    
     const handleChange = (e) => {
-        setInput(e.target.value)
-    }
-*/
-    return (
-        <div>
-            <h2>Tareas pendientes</h2>
-            <div>
-                
-                <form>
-                    <label>
-                        Que te gustaria hacer hoy?
-                    </label>
-                    <input
-                        id="input"
-                        onKeyDown={(e) => {
-                            if (e.key === "Enter") {  
-                                setTarea(tarea.concat(input));
-                                setInput("");
-                            }
-                        }}
-                        value={input}
-                        onChange={(e) => setInput(e.target.value)}
-                    />
-                </form>
-            </div>
-            <div>
-                <TodoLists items={tarea } />
-            </div>
-        </div>
-    )
+        setInput(e.target.value);
+    }   
 
-    function TodoLists(props) {
-        return (
-            <ul>
-                {props.items.map((item) => {
-                    <li key={item.id}>{item }</li>
-                })}
-            </ul>
-        )
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (input !== "") { 
+            setTarea(tarea.concat(input));
+            setInput('')
+        }           
     }
+    
+
+
+    console.log(tarea)
+    return (
+        <div className="container  justify-content-center my-5">
+            
+            <h2 className="d-block ">Lista de tareas</h2>
+ 
+                <form onSubmit={handleSubmit} className="input-group mb-3">
+                    <input type="text" 
+                        className="form-control" 
+                        placeholder="¿Qué quieres hacer hoy?" 
+                        aria-label="Recipient's username" 
+                        aria-describedby="basic-addon2"                                           
+                        
+                        onChange={handleChange}
+                        value={input}
+                    />
+                    
+                </form >
+
+                <span className="input" id="span">Tareas {tarea.length}</span>   
+
+
+
+            <div>
+                <ul>
+                    {tarea.map((item, index)=> 
+                        <>
+                            <li key={index}>{item} </li>
+                            
+                            <button onClick={() =>setTarea(tarea.filter(borrar => borrar != item))}>Borrar</button>
+                        </>    
+                        
+                    )}
+                    
+
+                </ul>  
+                
+            </div>    
+
+                
+                                 
+          
+        
+               
+            
+        </div>
+    )   
+
 }
 
 export default TodoApp;
